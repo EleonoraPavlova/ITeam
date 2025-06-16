@@ -8,7 +8,13 @@ interface Props extends ComponentProps<'input'> {
   width?: string
 }
 
-export const Input = ({ className, type, isSearch = false, width = 'w-full', ...props }: Props): ReactElement => {
+export const Input = ({
+  className,
+  type = 'text',
+  isSearch = false,
+  width = 'w-full',
+  ...props
+}: Props): ReactElement => {
   return (
     <div className={cn('relative', width)}>
       {isSearch && (
