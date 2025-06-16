@@ -6,7 +6,7 @@ import JobsList from '@/components/jobs/jobsList'
 import { getFirstString } from '@/lib/getFirstString'
 import { Progress } from '@/shared/progress'
 import { Typography } from '@/shared/typography'
-import { EMPLOYMENT_TYPES_OPTIONS, EmploymentTypesOptionValue } from '@/types/jobs.model'
+import { DatePosted, EMPLOYMENT_TYPES_OPTIONS, EmploymentTypesOptionValue } from '@/types/jobs.model'
 
 const JobsPage = async ({
   searchParams,
@@ -17,14 +17,12 @@ const JobsPage = async ({
 
   const query = getFirstString(params.query)
   const employment_types = getFirstString(params.employment_types)
-  const fields = getFirstString(params.fields)
-  const country = getFirstString(params.country)
+  const datePosted = getFirstString(params.datePosted)
 
   const data = await getSearch({
     query: query ?? '',
     employment_types: (employment_types as EmploymentTypesOptionValue) ?? EMPLOYMENT_TYPES_OPTIONS[0].value,
-    fields: fields ? [fields] : undefined,
-    country,
+    date_posted: (datePosted as DatePosted) ?? DatePosted.All,
   })
 
   return (
