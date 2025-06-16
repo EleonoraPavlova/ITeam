@@ -53,44 +53,6 @@ const JobItem = ({ data, isFullVersion = false }: Props): ReactElement => {
       {isFullVersion && (
         <div className='flex gap-3 flex-col'>
           <JobProperties data={JOB_INFO_ITEMS} />
-          {/*<LinkInfo data={links} />*/}
-          {/*<Typography>*/}
-          {/*  Publisher: <span className='px-3'>{data.job_publisher}</span>*/}
-          {/*</Typography>*/}
-          {/*<Typography>*/}
-          {/*  Employment types: <span className='px-3'>{data.job_employment_types.join(', ')}</span>*/}
-          {/*</Typography>*/}
-
-          {/*<Typography>*/}
-          {/*  Description: <span className='px-3'> {data.job_description}</span>*/}
-          {/*</Typography>*/}
-          {/*<Typography>*/}
-          {/*  Remote: <span className='px-3'>{data.job_is_remote ? 'Yes' : 'No'}</span>*/}
-          {/*</Typography>*/}
-          {/*<Typography>*/}
-          {/*  Posted: <span className='px-3'>{data.job_posted_human_readable}</span>*/}
-          {/*</Typography>*/}
-          {/*<Typography>Benefits: {data.job_benefits?.join(', ') || 'N/A'}</Typography>*/}
-          {/*<Typography>*/}
-          {/*  Experience (months):{' '}*/}
-          {/*  <span className='px-3'>{data.job_required_experience.required_experience_in_months ?? 'N/A'}</span>*/}
-          {/*</Typography>*/}
-          {/*<Typography>*/}
-          {/*  Experience mentioned:{' '}*/}
-          {/*  <span className='px-3'>{data.job_required_experience.experience_mentioned ? 'Yes' : 'No'}</span>*/}
-          {/*</Typography>*/}
-          {/*<Typography>*/}
-          {/*  Experience preferred: {data.job_required_experience.experience_preferred ? 'Yes' : 'No'}*/}
-          {/*</Typography>*/}
-
-          {/*<Typography>Salary: {data.job_salary || 'N/A'}</Typography>*/}
-          {/*<Typography>Currency: {data.job_salary_currency || 'N/A'}</Typography>*/}
-          {/*<Typography>Salary period: {data.job_salary_period || 'N/A'}</Typography>*/}
-          {/*<Typography>Highlights Qualifications: {data.job_highlights.Qualifications?.join(', ') || 'N/A'}</Typography>*/}
-          {/*<Typography>*/}
-          {/*  Highlights Responsibilities: {data.job_highlights.Responsibilities?.join(', ') || 'N/A'}*/}
-          {/*</Typography>*/}
-          {/*<Typography>Highlights Benefits: {data.job_highlights.Benefits?.join(', ') || 'N/A'}</Typography>*/}
         </div>
       )}
     </div>
