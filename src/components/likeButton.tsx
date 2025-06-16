@@ -3,27 +3,32 @@ import { Heart } from 'lucide-react'
 import { ReactElement, useEffect, useState } from 'react'
 
 import { Button } from '@/shared/button'
+import { JobData } from '@/types/jobs.model'
 
 interface Props {
-  jobId: string
+  data: JobData
 }
 
-const LikeButton = ({ jobId }: Props): ReactElement => {
+const LikeButton = ({ data }: Props): ReactElement => {
   const [liked, setLiked] = useState(false)
 
   useEffect(() => {
-    const savedLikes = JSON.parse(localStorage.getItem('likedJobs') || '[]')
-    setLiked(savedLikes.includes(jobId))
-  }, [jobId])
+    const savedLikedJobs: JobData[] = JSON.parse(localStorage.getItem('likedJobs') || '[]')
+    setLiked(savedLikedJobs.some((savedJob) => savedJob.job_id === data.job_id))
+  }, [data.job_id])
 
   const toggleLike = () => {
-    const savedLikes = JSON.parse(localStorage.getItem('likedJobs') || '[]')
-    let updatedLikes
-    if (savedLikes.includes(jobId)) {
-      updatedLikes = savedLikes.filter((id: string) => id !== jobId)
+    const savedLikedJobs: JobData[] = JSON.parse(localStorage.getItem('likedJobs') || '[]')
+    let updatedLikes: JobData[]
+
+    const isAlreadyLiked = savedLikedJobs.some((savedJob) => savedJob.job_id === data.job_id)
+
+    if (isAlreadyLiked) {
+      updatedLikes = savedLikedJobs.filter((savedJob) => savedJob.job_id !== data.job_id)
     } else {
-      updatedLikes = [...savedLikes, jobId]
+      updatedLikes = [...savedLikedJobs, data]
     }
+
     localStorage.setItem('likedJobs', JSON.stringify(updatedLikes))
     setLiked(!liked)
   }

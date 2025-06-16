@@ -32,10 +32,10 @@ const JobItem = ({ data, isFullVersion = false }: Props): ReactElement => {
               {data.employer_name}
             </Typography>
           </div>
-          <LikeButton jobId={data.job_id} />
+          <LikeButton data={data} />
         </div>
         <Typography>
-          Title: <span className='px-3'>{data.job_title}</span>{' '}
+          Title: <span className='px-3'>{data.job_title}</span>
         </Typography>
         <Typography as='h6'>
           <Typography>
