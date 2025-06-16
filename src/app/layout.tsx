@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Atma } from 'next/font/google'
 import { ReactNode } from 'react'
 
+import ReduxProvider from '@/app/reduxProvider'
 import { Header } from '@/shared/header'
 
 const atma = Atma({
@@ -26,8 +27,10 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
     <html lang='en' className={`${atma.variable} font-sans`}>
       <body>
-        <Header />
-        <main className='min-h-screen mb-3.5'>{children}</main>
+        <ReduxProvider>
+          <Header />
+          <main className='min-h-screen mb-3.5'>{children}</main>
+        </ReduxProvider>
       </body>
     </html>
   )
