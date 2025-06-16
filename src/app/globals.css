@@ -15,10 +15,6 @@ html {
   }
 }
 
-body {
-  font-family: var(--font-atma);
-}
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -134,6 +130,7 @@ body {
   }
 
   body {
+    font-family: var(--font-atma);
     @apply bg-background text-foreground;
   }
 }

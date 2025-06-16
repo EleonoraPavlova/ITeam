@@ -5,6 +5,8 @@ import ContentPanel from '@/components/contentPanel'
 import JobItem from '@/components/jobs/jobItem'
 import { Progress } from '@/shared/progress'
 
+export const revalidate = 86400
+
 const JobDetailsPage = async ({ params }: { params: Promise<{ slug: string }> }): Promise<ReactElement> => {
   const { slug } = await params
   const job = await getJobById({ job_id: slug })

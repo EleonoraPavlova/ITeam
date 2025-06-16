@@ -13,7 +13,7 @@ export const getSearch = async (params: SearchQueryParams): Promise<JobsModel> =
 
 export const getJobById = async (params: GetJobByIdParams): Promise<JobsModel> => {
   try {
-    const response = await rapidapi.get<ApiResponse>(API_ROUTES.jobDetails, { params })
+    const response = await rapidapi.get<ApiResponse>(API_ROUTES.details, { params })
     return response.data
   } catch (e: any) {
     throw new Error(e ?? 'Error while fetching the job by id')
