@@ -1,27 +1,32 @@
 'use client'
 
 import { useFormik } from 'formik'
+import { useRouter } from 'next/navigation'
 import { ReactElement } from 'react'
-import * as Yup from 'yup'
 
+import { ROUTES } from '@/app/api/routes'
+import { initialValues, registrationSchema } from '@/app/create-profile/schema'
 import ContentPanel from '@/components/contentPanel'
 import { Button } from '@/shared/button'
 import { Input } from '@/shared/input'
+import { Textarea } from '@/shared/textarea'
 import { Typography } from '@/shared/typography'
+import { registerUser } from '@/store/actions/account'
+import { useAppDispatch } from '@/store/hooks'
 
 const CreateProfilePage = (): ReactElement => {
+  const router = useRouter()
+  const dispatch = useAppDispatch()
+
   const formik = useFormik({
-    initialValues: { name: '', password: '' },
-    validationSchema: Yup.object({
-      name: Yup.string().min(2, 'Name must be at least 2 characters').required('Name is required'),
-      password: Yup.string().min(2, 'Password must be at least 2 characters').required('Password is required'),
-    }),
+    initialValues: initialValues,
+    validationSchema: registrationSchema,
     onSubmit: (values, { resetForm }) => {
-      console.log('Form data', values)
+      dispatch(registerUser(values))
       resetForm()
+      router.push(ROUTES.home)
     },
   })
-
   return (
     <div className='flex justify-center min-h-screen mt-8'>
       <ContentPanel
@@ -31,7 +36,6 @@ const CreateProfilePage = (): ReactElement => {
         <form onSubmit={formik.handleSubmit} className='flex gap-3 flex-col'>
           <div>
             <Input
-              type='text'
               name='name'
               placeholder='name'
               value={formik.values.name}
@@ -40,6 +44,19 @@ const CreateProfilePage = (): ReactElement => {
               className='mb-1'
             />
             {formik.touched.name && formik.errors.name && <Typography variant='error'>{formik.errors.name}</Typography>}
+          </div>
+          <div>
+            <Input
+              name='email'
+              placeholder='email'
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className='mb-1'
+            />
+            {formik.touched.email && formik.errors.email && (
+              <Typography variant='error'>{formik.errors.email}</Typography>
+            )}
           </div>
           <div>
             <Input
@@ -53,6 +70,45 @@ const CreateProfilePage = (): ReactElement => {
             />
             {formik.touched.password && formik.errors.password && (
               <Typography variant='error'>{formik.errors.password}</Typography>
+            )}
+          </div>
+          <div>
+            <Input
+              name='desiredJobTitle'
+              placeholder='desired job title'
+              value={formik.values.desiredJobTitle}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className='mb-1'
+            />
+            {formik.touched.desiredJobTitle && formik.errors.desiredJobTitle && (
+              <Typography variant='error'>{formik.errors.desiredJobTitle}</Typography>
+            )}
+          </div>
+          <div>
+            <Input
+              name='country'
+              placeholder='country'
+              value={formik.values.country}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className='mb-1'
+            />
+            {formik.touched.country && formik.errors.country && (
+              <Typography variant='error'>{formik.errors.country}</Typography>
+            )}
+          </div>
+          <div>
+            <Textarea
+              name='aboutMe'
+              placeholder='about me'
+              value={formik.values.aboutMe}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className='mb-1'
+            />
+            {formik.touched.aboutMe && formik.errors.aboutMe && (
+              <Typography variant='error'>{formik.errors.aboutMe}</Typography>
             )}
           </div>
           <div className='ml-auto'>
