@@ -2,7 +2,7 @@
 
 import { useFormik } from 'formik'
 import { useRouter } from 'next/navigation'
-import { ReactElement } from 'react'
+import { ReactElement, useEffect } from 'react'
 
 import { ROUTES } from '@/app/api/routes'
 import { initialValues, registrationSchema } from '@/app/create-profile/schema'
@@ -18,15 +18,24 @@ const CreateProfilePage = (): ReactElement => {
   const router = useRouter()
   const dispatch = useAppDispatch()
 
+  useEffect(() => {
+    const storedId = localStorage.getItem('user_id')
+    if (storedId) {
+      router.push(ROUTES.home)
+    }
+  }, [router])
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: registrationSchema,
     onSubmit: (values, { resetForm }) => {
       dispatch(registerUser(values))
+      localStorage.setItem('user_id', values._id)
       resetForm()
       router.push(ROUTES.home)
     },
   })
+
   return (
     <div className='flex justify-center min-h-screen mt-8'>
       <ContentPanel

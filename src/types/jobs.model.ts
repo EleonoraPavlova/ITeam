@@ -1,11 +1,26 @@
-export type ApiResponse = {
+export type ApiResponseSearch = {
   status: 'ERROR' | 'OK'
   request_id: string
-  data: JobData[]
-  error?: {
-    message: string
-    code: number
+  parameters: {
+    query: string
+    page: number
+    num_pages: number
+    date_posted: DatePosted
+    country: string
+    language: string
   }
+  data: JobData[]
+}
+
+export interface ApiResponseGetJobById {
+  status: string
+  request_id: string
+  parameters: {
+    job_id: string
+    country: string
+    language: string
+  }
+  data: JobData[]
 }
 
 export type SearchQueryParams = {

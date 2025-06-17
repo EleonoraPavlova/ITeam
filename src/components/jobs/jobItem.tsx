@@ -24,7 +24,7 @@ const JobItem = ({ data, isFullVersion = false }: Props): ReactElement => {
             <Image
               src={data.employer_logo || '/images/logo.webp'}
               alt={data.employer_name}
-              className='rounded-[8px] mb-1'
+              className='rounded-[8px]'
               width={40}
               height={40}
             />

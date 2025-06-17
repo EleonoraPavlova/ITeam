@@ -3,5 +3,6 @@ export const ROUTES = {
   jobs: 'jobs',
   liked: 'liked',
   createProfile: 'create-profile',
-  getJobDetails: (id: string) => `/job-details/${id}`,
+  login: 'login',
+  getJobDetails: (job_id: string) => `/job-details/${job_id}`,
 }
