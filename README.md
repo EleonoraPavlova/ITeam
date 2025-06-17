@@ -57,6 +57,11 @@ Allows you to search job by search name, datePosted, and employment types, view 
 
 - Displays liked jobs
 
+
+### Login Page (`/login`)
+
+- Displays login form with validations(Formik, yup)
+
 ## Technical Details
 
 - Built with Next.js 14 using the App Router

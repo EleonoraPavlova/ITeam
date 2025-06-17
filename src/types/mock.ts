@@ -1,4 +1,4 @@
-import { ApiResponse, JobData } from '@/types/jobs.model'
+import { ApiResponseGetJobById, JobData } from '@/types/jobs.model'
 
 export const mockJobData: JobData[] = [
   {
@@ -64,8 +64,13 @@ export const mockJobData: JobData[] = [
   },
 ]
 
-export const mockApiResponse: ApiResponse = {
+export const mockApiResponse: ApiResponseGetJobById = {
   status: 'OK',
   request_id: 'mock-request-id-123',
+  parameters: {
+    job_id: 'NtvuHLFtPJGFpuSuAAAAAA==',
+    country: 'us',
+    language: 'en',
+  },
   data: mockJobData,
 }
