@@ -21,6 +21,7 @@ const LoginPage = (): ReactElement => {
     validationSchema: loginSchema,
     onSubmit: (values, { resetForm }) => {
       dispatch(loginUser(values))
+      localStorage.setItem('login', JSON.stringify(values.email))
       resetForm()
       router.push(ROUTES.home)
     },

@@ -9,3 +9,7 @@ export interface UserProfile {
   createdAt?: string
   updatedAt?: string
 }
+
+export type UserProfileWithoutPassword = Omit<UserProfile, 'password'>
+
+export type RegisterUserResponse = { message: string; user: UserProfileWithoutPassword }

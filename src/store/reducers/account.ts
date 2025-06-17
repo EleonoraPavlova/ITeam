@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { registerUser } from '@/store/actions/account'
-import { UserProfile } from '@/types/user.model'
+import { RegisterUserResponse } from '@/types/user.model'
 
 interface RegisterState {
-  account: UserProfile | null
+  account: RegisterUserResponse | null
   isLoading: boolean
   error: string | null
   isAuthenticated: boolean
@@ -21,7 +21,7 @@ const accountSlice = createSlice({
   name: 'account',
   initialState,
   reducers: {
-    setAccount(state, action: PayloadAction<UserProfile>) {
+    setAccount(state, action: PayloadAction<RegisterUserResponse>) {
       state.account = action.payload
       state.isAuthenticated = true
       state.isLoading = false
@@ -34,9 +34,9 @@ const accountSlice = createSlice({
         state.isLoading = true
         state.error = null
       })
-      .addCase(registerUser.fulfilled, (state, action: PayloadAction<{ user: UserProfile }>) => {
+      .addCase(registerUser.fulfilled, (state, action: PayloadAction<RegisterUserResponse>) => {
         state.isLoading = false
-        state.account = action.payload.user
+        state.account = action.payload
         state.isAuthenticated = true
       })
       .addCase(registerUser.rejected, (state, action) => {
