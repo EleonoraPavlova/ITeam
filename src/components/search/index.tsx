@@ -21,10 +21,6 @@ const Search = (): ReactElement => {
   const [search, setSearch] = useState<string>('')
   const [type, setType] = useState<EmploymentTypesOptionValue>(EMPLOYMENT_TYPES_OPTIONS[0].value)
 
-  // useEffect(() => {
-  //   if (search.length) setSearch('')
-  // }, [])
-
   const selectedDatePostedHandler = (value: DatePostedOptionValue) => {
     setSelectedDatePosted(value)
   }
