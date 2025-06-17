@@ -2,11 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { Auth } from '@/types/auth.model'
-import { UserProfile } from '@/types/user.model'
+import { UserResponse } from '@/types/user.model'
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_PROFILE_BASE_URL
 
-export const loginUser = createAsyncThunk<UserProfile, Auth>(
+export const loginUser = createAsyncThunk<UserResponse, Auth>(
   'auth/loginUser',
   async (data: Auth, { rejectWithValue }) => {
     try {

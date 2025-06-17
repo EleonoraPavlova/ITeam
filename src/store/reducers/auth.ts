@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { Auth } from '@/types/auth.model'
+import { UserResponse } from '@/types/user.model'
 
 import { loginUser } from '../actions/auth'
 
 interface AuthState {
-  userCreds: Auth | null
+  auth: UserResponse | null
   isLoading: boolean
   error: string | null
   isAuthenticated: boolean
 }
 
 const initialState: AuthState = {
-  userCreds: null,
+  auth: { message: '', user: { _id: '', name: '', email: '', desiredJobTitle: '', aboutMe: '' } },
   isLoading: false,
   error: null,
   isAuthenticated: false,
@@ -23,7 +23,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      state.userCreds = null
+      state.auth = null
       state.isAuthenticated = false
       state.isLoading = false
       state.error = null
@@ -35,10 +35,11 @@ const authSlice = createSlice({
         state.isLoading = true
         state.error = null
       })
-      .addCase(loginUser.fulfilled, (state, action: PayloadAction<Auth>) => {
+      .addCase(loginUser.fulfilled, (state, action: PayloadAction<UserResponse>) => {
         state.isLoading = false
-        state.userCreds = action.payload
+        state.auth = action.payload
         state.isAuthenticated = true
+        state.error = null
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false
