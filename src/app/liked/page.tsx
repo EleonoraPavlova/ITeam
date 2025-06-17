@@ -20,7 +20,7 @@ const LikedPage = (): ReactElement => {
       }
     }
   }, [])
-  console.log('likedJobs', likedJobs)
+
   return (
     <ContentPanel title='Liked jobs'>
       {likedJobs.length ? (

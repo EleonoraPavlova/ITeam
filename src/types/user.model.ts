@@ -12,4 +12,4 @@ export interface UserProfile {
 
 export type UserProfileWithoutPassword = Omit<UserProfile, 'password'>
 
-export type RegisterUserResponse = { message: string; user: UserProfileWithoutPassword }
+export type UserResponse = { message: string; user: UserProfileWithoutPassword }

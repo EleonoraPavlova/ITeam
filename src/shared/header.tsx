@@ -3,7 +3,7 @@
 import { Heart, User } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { ComponentPropsWithoutRef, ComponentRef, forwardRef, ReactElement, useEffect } from 'react'
+import { ComponentPropsWithoutRef, ComponentRef, forwardRef, ReactElement } from 'react'
 
 import { ROUTES } from '@/app/api/routes'
 import { cn } from '@/lib/utils'
@@ -19,20 +19,13 @@ type HeaderProps = ComponentPropsWithoutRef<'header'>
 type HeaderRef = ComponentRef<'header'>
 
 export const Header = forwardRef<HeaderRef, HeaderProps>(({ className, ...rest }, ref): ReactElement => {
-  const user = useAppSelector((state) => state.account.account?.user)
+  const user = useAppSelector((state) => state.auth.auth?.user)
   const isLoading = useAppSelector((state) => state.account.isLoading)
-  const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated)
-  console.log('isAuthenticated', isAuthenticated)
+
   const dispatch = useAppDispatch()
 
   const router = useRouter()
   const pathname = usePathname()
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push(`/${ROUTES.login}`)
-    }
-  }, [isAuthenticated, router])
 
   const likedClickHandle = () => {
     router.push(`/${ROUTES.liked}`)
