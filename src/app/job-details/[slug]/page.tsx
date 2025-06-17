@@ -7,8 +7,6 @@ import { Progress } from '@/shared/progress'
 import { Typography } from '@/shared/typography'
 import { mockApiResponse } from '@/types/mock'
 
-// export const revalidate = 86400
-
 const JobDetailsPage = async ({ params }: { params: { slug: string } }): Promise<ReactElement> => {
   const { slug } = params
 
