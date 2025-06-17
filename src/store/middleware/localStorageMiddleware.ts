@@ -5,18 +5,18 @@ export const localStorageMiddleware: Middleware = (store) => (next) => (action: 
 
   if (action.type === 'account/registerUser/fulfilled') {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('account', JSON.stringify(action.payload.user))
+      localStorage.setItem('profile', JSON.stringify(action.payload.user))
     }
   }
 
   if (action.type === 'auth/loginUser/fulfilled') {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('account', JSON.stringify(action.payload.user))
+      localStorage.setItem('login', JSON.stringify(action.payload.user))
     }
   }
 
   if (action.type === 'auth/logout') {
-    localStorage.removeItem('account')
+    localStorage.removeItem('profile')
   }
 
   return result

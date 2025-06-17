@@ -24,8 +24,8 @@ const LoginPage = (): ReactElement => {
         .unwrap()
         .then((res) => {
           router.push(ROUTES.home)
+          resetForm()
         })
-      resetForm()
     },
   })
 

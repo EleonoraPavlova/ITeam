@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { registerUser } from '@/store/actions/account'
+import { logout } from '@/store/reducers/auth'
 import { UserResponse } from '@/types/user.model'
 
 interface RegisterState {
@@ -42,6 +43,12 @@ const accountSlice = createSlice({
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false
         state.error = action.payload as string
+      })
+      .addCase(logout, (state) => {
+        state.account = null
+        state.isAuthenticated = false
+        state.isLoading = false
+        state.error = null
       })
   },
 })
