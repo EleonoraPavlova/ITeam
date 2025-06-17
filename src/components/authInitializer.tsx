@@ -2,8 +2,7 @@
 
 import { ReactNode, useEffect } from 'react'
 
-import useUser from '@/hooks/useUser'
-import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import { useAppDispatch } from '@/store/hooks'
 import { setAccount } from '@/store/reducers/account'
 
 interface Props {
@@ -12,15 +11,15 @@ interface Props {
 
 const AuthInitializer = ({ children }: Props) => {
   const dispatch = useAppDispatch()
-  const userId = useAppSelector((state) => state.account?.account?._id)
-
-  const { user } = useUser(userId ?? null)
 
   useEffect(() => {
-    if (user) {
-      dispatch(setAccount(user))
+    if (typeof window !== 'undefined') {
+      const storedAccount = localStorage.getItem('account')
+      if (storedAccount) {
+        dispatch(setAccount({ message: '', user: JSON.parse(storedAccount) }))
+      }
     }
-  }, [user, dispatch])
+  }, [dispatch])
 
   return <>{children}</>
 }

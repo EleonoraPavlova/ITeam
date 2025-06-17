@@ -4,6 +4,7 @@ import { getJobById } from '@/app/api/jobsApi'
 import ContentPanel from '@/components/contentPanel'
 import JobItem from '@/components/jobs/jobItem'
 import { Progress } from '@/shared/progress'
+import { Typography } from '@/shared/typography'
 import { mockApiResponse } from '@/types/mock'
 
 // export const revalidate = 86400
@@ -18,6 +19,7 @@ const JobDetailsPage = async ({ params }: { params: { slug: string } }): Promise
   return (
     <ContentPanel title='Job Details' className='w-full sm:w-[310px] md:w-[450px]'>
       <Suspense fallback={<Progress />}>
+        {mockApiResponse && <Typography variant='error'>This is a mock</Typography>}
         <JobItem data={job.data[0]} isFullVersion />
       </Suspense>
     </ContentPanel>
