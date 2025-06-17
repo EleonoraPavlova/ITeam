@@ -94,7 +94,7 @@ const CreateProfilePage = (): ReactElement => {
               <Input
                 name='country'
                 placeholder='country'
-                value={formik.values.country || 'us'}
+                value={formik.values.country || ''}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className='mb-1'
@@ -110,7 +110,7 @@ const CreateProfilePage = (): ReactElement => {
                 value={formik.values.aboutMe}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className='mb-1 pl-2'
+                className='mb-1 pl-8'
               />
               {formik.touched.aboutMe && formik.errors.aboutMe && (
                 <Typography variant='error'>{formik.errors.aboutMe}</Typography>

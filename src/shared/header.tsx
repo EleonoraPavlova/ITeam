@@ -19,7 +19,7 @@ type HeaderProps = ComponentPropsWithoutRef<'header'>
 type HeaderRef = ComponentRef<'header'>
 
 export const Header = forwardRef<HeaderRef, HeaderProps>(({ className, ...rest }, ref): ReactElement => {
-  const user = useAppSelector((state) => state.auth.auth?.user)
+  const user = useAppSelector((state) => state.account.account?.user)
   const isLoading = useAppSelector((state) => state.account.isLoading)
 
   const dispatch = useAppDispatch()

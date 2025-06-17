@@ -14,9 +14,9 @@ const AuthInitializer = ({ children }: Props) => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const storedAccount = localStorage.getItem('account')
-      if (storedAccount) {
-        dispatch(setAccount({ message: '', user: JSON.parse(storedAccount) }))
+      const storedProfile = localStorage.getItem('profile')
+      if (storedProfile) {
+        dispatch(setAccount({ message: '', user: JSON.parse(storedProfile) }))
       }
     }
   }, [dispatch])
