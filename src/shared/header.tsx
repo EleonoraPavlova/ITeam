@@ -8,6 +8,7 @@ import { ComponentPropsWithoutRef, ComponentRef, forwardRef, ReactElement } from
 import { ROUTES } from '@/app/api/routes'
 import { cn } from '@/lib/utils'
 import Logo from '@/shared/logo'
+import { Progress } from '@/shared/progress'
 import { Typography } from '@/shared/typography'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { logout } from '@/store/reducers/auth'
@@ -19,6 +20,8 @@ type HeaderRef = ComponentRef<'header'>
 
 export const Header = forwardRef<HeaderRef, HeaderProps>(({ className, ...rest }, ref): ReactElement => {
   const user = useAppSelector((state) => state.account.account?.user)
+  const isLoadingAcc = useAppSelector((state) => state.account.isLoading)
+  const isLoadingAuth = useAppSelector((state) => state.auth.isLoading)
 
   const dispatch = useAppDispatch()
 
@@ -70,6 +73,7 @@ export const Header = forwardRef<HeaderRef, HeaderProps>(({ className, ...rest }
         </div>
         <span className='flex w-full h-[1px] bg-muted-foreground/30' />
       </header>
+      {(isLoadingAcc || isLoadingAuth) && <Progress />}
     </>
   )
 })
