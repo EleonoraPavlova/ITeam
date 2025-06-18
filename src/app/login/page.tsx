@@ -11,6 +11,7 @@ import { Input } from '@/shared/input'
 import { Typography } from '@/shared/typography'
 import { loginUser } from '@/store/actions/auth'
 import { useAppDispatch } from '@/store/hooks'
+import { setAccount } from '@/store/reducers/account'
 
 const LoginPage = (): ReactElement => {
   const router = useRouter()
@@ -19,13 +20,11 @@ const LoginPage = (): ReactElement => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
-    onSubmit: (values, { resetForm }) => {
-      dispatch(loginUser(values))
-        .unwrap()
-        .then((res) => {
-          router.push(ROUTES.home)
-          resetForm()
-        })
+    onSubmit: async (values, { resetForm }) => {
+      const res = await dispatch(loginUser(values)).unwrap()
+      dispatch(setAccount({ message: '', user: res.user }))
+      router.push(ROUTES.home)
+      resetForm()
     },
   })
 
@@ -37,6 +36,7 @@ const LoginPage = (): ReactElement => {
             <Input
               name='email'
               placeholder='email'
+              autoComplete='email'
               value={formik.values.email}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -51,6 +51,7 @@ const LoginPage = (): ReactElement => {
               type='password'
               name='password'
               placeholder='password'
+              autoComplete='current-password'
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}

@@ -17,6 +17,7 @@ export const localStorageMiddleware: Middleware = (store) => (next) => (action: 
 
   if (action.type === 'auth/logout') {
     localStorage.removeItem('profile')
+    localStorage.removeItem('login')
   }
 
   return result
