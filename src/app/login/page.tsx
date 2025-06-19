@@ -1,7 +1,7 @@
 'use client'
 import { useFormik } from 'formik'
 import { useRouter } from 'next/navigation'
-import { ReactElement } from 'react'
+import { ReactElement, useState } from 'react'
 
 import { ROUTES } from '@/app/api/routes'
 import { initialValues, loginSchema } from '@/app/login/schema'
@@ -16,21 +16,27 @@ import { setAccount } from '@/store/reducers/account'
 const LoginPage = (): ReactElement => {
   const router = useRouter()
   const dispatch = useAppDispatch()
+  const [error, setError] = useState<string | null>(null)
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
     onSubmit: async (values, { resetForm }) => {
-      const res = await dispatch(loginUser(values)).unwrap()
-      dispatch(setAccount({ message: '', user: res.user }))
-      router.push(ROUTES.home)
-      resetForm()
+      try {
+        const res = await dispatch(loginUser(values)).unwrap()
+        dispatch(setAccount({ message: res.message, user: res.user }))
+        router.push(ROUTES.home)
+        resetForm()
+      } catch (e: any) {
+        setError(e.message)
+      }
     },
   })
 
   return (
     <div className='flex justify-center min-h-screen mt-8'>
       <ContentPanel title='Login' className='w-full sm:w-[310px] md:w-[450px] rounded-2xl border p-3 shadow-sm'>
+        {error && <Typography variant='error'>{error}</Typography>}
         <form onSubmit={formik.handleSubmit} className='flex gap-3 flex-col'>
           <div>
             <Input
