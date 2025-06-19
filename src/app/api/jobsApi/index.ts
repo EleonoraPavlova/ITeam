@@ -17,7 +17,7 @@ export const getSearch = async (params: SearchQueryParams): Promise<JobsModel> =
   }
 }
 
-export const getJobById = async (params: GetJobByIdParams): Promise<JobsModel> => {
+export const getJobById = async (params: GetJobByIdParams): Promise<ApiResponseGetJobById> => {
   try {
     const response = await rapidapi.get<ApiResponseGetJobById>(API_ROUTES.details, {
       params: { job_id: params.job_id, country: 'us' },

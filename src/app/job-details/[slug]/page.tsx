@@ -17,7 +17,7 @@ const JobDetailsPage = async ({ params }: { params: { slug: string } }): Promise
   return (
     <ContentPanel title='Job Details' className='w-full sm:w-[310px] md:w-[450px]'>
       <Suspense fallback={<Progress />}>
-        {mockApiResponse && <Typography variant='error'>This is a mock</Typography>}
+        {mockApiResponse && <Typography variant='error'>This is a mock, because of rapid limit</Typography>}
         <JobItem data={job.data[0]} isFullVersion />
       </Suspense>
     </ContentPanel>
